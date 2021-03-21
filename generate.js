@@ -19,8 +19,8 @@ function updateSignature(form) {
 function copySignature() {
     let text = document.getElementById("signature").innerHTML;
     let data = [new ClipboardItem({ "text/html": text })]; 
-    navigator.clipboard.write(data).then(successButton());
-    function successButton() {
-        document.getElementsByTagName("button")[0].classList.add("btn-success");
+    navigator.clipboard.write(data).then(addButtonClass("btn-success"),addButtonClass("btn-danger"));
+    function addButtonClass(newClass) {
+        document.getElementsByTagName("button")[0].classList.add(newClass);
     }
 }
