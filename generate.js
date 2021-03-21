@@ -17,13 +17,10 @@ function updateSignature(form) {
 }
 
 function copySignature() {
-    const text = document.getElementById("signature").innerHTML; 
-    const listener = function(ev) {
-        ev.preventDefault();
-        ev.clipboardData.setData('text/html', text);
-        ev.clipboardData.setData('text/plain', text);
-    };
-    document.addEventListener('copy', listener);
-    document.execCommand('copy');
-    document.removeEventListener('copy', listener);
+    let text = document.getElementById("signature").innerHTML;
+    let data = [new ClipboardItem({ "text/html": text })]; 
+    navigator.clipboard.write(data).then(successButton());
+    function successButton() {
+        document.getElementsByTagName("button")[0].classList.add("btn-success");
+    }
 }
