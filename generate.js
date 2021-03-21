@@ -15,3 +15,15 @@ function updateSignature(form) {
         if (document.querySelector("#sig_"+inputs[i].id).innerHTML = val) {}
     }
 }
+
+function copySignature() {
+    const text = document.getElementById("signature").innerHTML; 
+    const listener = function(ev) {
+        ev.preventDefault();
+        ev.clipboardData.setData('text/html', text);
+        ev.clipboardData.setData('text/plain', text);
+    };
+    document.addEventListener('copy', listener);
+    document.execCommand('copy');
+    document.removeEventListener('copy', listener);
+}
