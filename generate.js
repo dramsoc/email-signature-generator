@@ -20,6 +20,15 @@ function copySignature() {
     let text = document.getElementById("signature").innerHTML;
     let data = [new ClipboardItem({ "text/html": text })]; 
     navigator.clipboard.write(data).then(addButtonClass("btn-success"),addButtonClass("btn-danger"));
+    
+    // navigator.permissions.query({ name: 'clipboard-write' }).then(result => {
+    //     if (result.state == 'granted') {
+    //         // do copy
+    //     } else {
+    //         addButtonClass("btn-danger");
+    //     }
+    // });
+
     function addButtonClass(newClass) {
         document.getElementsByTagName("button")[0].classList.add(newClass);
     }
