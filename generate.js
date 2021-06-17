@@ -18,7 +18,8 @@ function updateSignature(form) {
 
 function copySignature() {
     let text = document.getElementById("signature").innerHTML;
-    let data = [new ClipboardItem({ "text/html": text })]; 
+    let blob = new Blob([text], {type: 'text/html'});
+    let data = [new ClipboardItem({ "text/html": blob })]; 
     navigator.clipboard.write(data).then(addButtonClass("btn-success"),addButtonClass("btn-danger"));
     
     // navigator.permissions.query({ name: 'clipboard-write' }).then(result => {
