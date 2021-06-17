@@ -20,7 +20,7 @@ function copySignature() {
     let text = document.getElementById("signature").innerHTML;
     let blob = new Blob([text], {type: 'text/html'});
     let data = [new ClipboardItem({ "text/html": blob })]; 
-    navigator.clipboard.write(data).then(addButtonClass("btn-success"),addButtonClass("btn-danger"));
+    navigator.clipboard.write(data).then(function(){addButtonClass("btn-success")},function(){addButtonClass("btn-danger")});
     
     // navigator.permissions.query({ name: 'clipboard-write' }).then(result => {
     //     if (result.state == 'granted') {
@@ -30,7 +30,9 @@ function copySignature() {
     //     }
     // });
 
-    function addButtonClass(newClass) {
-        document.getElementsByTagName("button")[0].classList.add(newClass);
+    function addButtonClass(theClass) {
+        classes = document.getElementsByTagName("button")[0].classList;
+        classes.add(theClass);
+        window.setTimeout(function(){classes.remove(theClass)},1000);
     }
 }
